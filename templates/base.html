@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .title {
+                padding: 0px 0px 0px 10px;
+            }
+            .authsection {
+                padding: 10px;
+            }
+            .usersform, .apidetails, .userdetails {
+                padding: 10px;
+            }
+
+            td {
+                padding: 10px
+            }
+
+            .err {
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+        {% block body %}
+        {% block login %} 
+        {% endblock %}
+        {% block register %} 
+        {% endblock %}
+        {% block forgotpassword %} 
+        {% endblock %}
+        {% endblock %}
+    </body>
+</html>

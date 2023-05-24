@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2 class="title"> (Flask-REST, Flask-SQLAlchemy ORM, Monolithic)</h2>
+{% if context.user and context.user.is_authenticated %}
+<div class="authsection">
+    <h3>Hello, {{ context.user.username }}</h3> <a href="/logout"> Logout</a>
+</div>
+{% else %}
+<div class="authsection">
+    <a href="/register"> Create an Account</a> OR <a href="/login"> Login</a> 
+</div>
+{% endif %}
+<hr>
+
+<div class="apidetails">
+<h2>Available API endpoints</h2>
+<table id="apiTable">
+    <thead>
+        <tr>
+            <td>Action</td>
+            <td>Method</td>
+            <td>End Point</td>
+            <td>Payload/Body</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Get all the users</td>
+            <td>GET</td>
+            <td>/api/users</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Post a user</td>
+            <td>POST</td>
+            <td>/api/adduser</td>
+            <td>{"username": "example1", "email": "example1@gmail.com"}</td>
+        </tr>   
+        <tr>
+            <td>Delete a user</td>
+            <td>DELETE</td>
+            <td>/api/deleteuser?userid=xx</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>Update a user</td>
+            <td>PUT</td>
+            <td>/api/updateuser?userid=xx</td>
+            <td>{"username": "example1", "email": "example1@gmail.com"}</td>
+        </tr>
+    </tbody>    
+</table>
+</div>
+<hr>
+<div class="userdetails">
+    <h2>Registered Users:</h2>
+    <div class="users">
+        <table id="userTable">
+            {% if context.users %}
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                    <td>Date Created</td>
+                    <td>Delete/Update</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in context.users %}
+                    <tr>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.date_added}}</td>
+                        <td>
+                            <a href="/delete/{{user.id}}" style="color: red;">Delete</a>
+                            <a href="/update/{{user.id}}">Update</a>
+                        </td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+                {% else %}
+                <p>No users found.</p>
+            {% endif%}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

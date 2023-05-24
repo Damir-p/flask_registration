@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="usersform">
+    <h2> (Flask-REST, Flask-SQLAlchemy ORM, Monolithic)</h2>
+    <h2>Update User:</h2>
+    <form method="POST" action="/update/{{user.id}}" style="margin-top: -10px">
+        <input type="text" name="username" placeholder="enter your name" value="{{user.username}}" style="padding: 4px;">
+        <input type="email" name="email" placeholder="enter your email" value="{{user.email}}" style="padding: 4px;">
+        <br>
+        <button type="submit" style="margin-top: 8px;">Submit</button> &nbsp;
+        <a href="/">Home</a>
+    </form>
+</div>
+{% endblock %}
